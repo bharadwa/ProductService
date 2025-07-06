@@ -1,17 +1,18 @@
-package org.arcserve.productservice.models;
+package org.arcserve.productservice.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.arcserve.productservice.models.Category;
 
-@Getter
 @Setter
-public class Product extends BaseEntity{
+@Getter
+public class FakeStoreProductDTO {
 
+    private Long id;
     private String name;
     private String description;
     private String title;
     private Double price;
-    private Category category;
+    private String category;
     private String image;
-
 }
