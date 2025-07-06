@@ -1,5 +1,7 @@
 package org.arcserve.productservice.controllers;
 import org.arcserve.productservice.models.Product;
+import org.arcserve.productservice.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,15 +11,18 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    @Autowired
+    private ProductService productService;
+
     // get a product by id
     @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") String productId) {
-        return null;
+    public Product getSingleProduct(@PathVariable("id") Long productId) {
+        return productService.getProductById(productId);
     }
     // get all products
     @GetMapping
     public List<Product> getAllProducts() {
-        return new ArrayList<Product>();
+        return productService.getAllProducts();
     }
 
     @DeleteMapping("/{id}")
