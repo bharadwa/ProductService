@@ -1,10 +1,9 @@
 package org.arcserve.productservice.controllers;
-
-import lombok.Getter;
 import org.arcserve.productservice.models.Product;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/products")
 @RestController
@@ -17,7 +16,7 @@ public class ProductController {
     }
     // get all products
     @GetMapping
-    public  ArrayList<Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         return new ArrayList<Product>();
     }
 
@@ -35,7 +34,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public void replaceProduct(@PathVariable("id") String productId, @RequestBody Product product) {
         // Logic to replace a product by id
-        System.out.println("Replacing product with id: " + productId);
+       // System.out.println("Replacing product with id: " + productId);
     }
 
     @PostMapping

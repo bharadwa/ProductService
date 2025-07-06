@@ -1,6 +1,5 @@
 package org.arcserve.productservice.models;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Getter;
 import lombok.Setter;
 
