@@ -1,7 +1,10 @@
 package org.arcserve.productservice.controllers;
+
 import org.arcserve.productservice.models.Product;
 import org.arcserve.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,14 +14,21 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     // get a product by id
     @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") Long productId) {
-        return productService.getProductById(productId);
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long productId) {
+        return new ResponseEntity<>(productService.getProductById(productId),
+                HttpStatus.OK
+        );
     }
+
     // get all products
     @GetMapping
     public List<Product> getAllProducts() {
@@ -39,11 +49,11 @@ public class ProductController {
     @PutMapping("/{id}")
     public void replaceProduct(@PathVariable("id") String productId, @RequestBody Product product) {
         // Logic to replace a product by id
-       // System.out.println("Replacing product with id: " + productId);
+        // System.out.println("Replacing product with id: " + productId);
     }
 
     @PostMapping
-    public void createProduct(@RequestBody Product product ) {
+    public void createProduct(@RequestBody Product product) {
 
     }
 }

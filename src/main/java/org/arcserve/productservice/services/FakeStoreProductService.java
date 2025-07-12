@@ -1,6 +1,7 @@
 package org.arcserve.productservice.services;
 
 import org.arcserve.productservice.dtos.FakeStoreProductDTO;
+import org.arcserve.productservice.exceptions.ProductNotFoundException;
 import org.arcserve.productservice.models.Category;
 import org.arcserve.productservice.models.Product;
 import org.springframework.stereotype.Service;
@@ -28,10 +29,12 @@ public class FakeStoreProductService implements ProductService {
      */
     @Override
     public Product getProductById(Long id) {
-        FakeStoreProductDTO dto = restTemplate.getForObject
+
+        throw new ProductNotFoundException("product not found", "200202", new String [] {String.valueOf(id)});
+        /*FakeStoreProductDTO dto = restTemplate.getForObject
                 ("https://fakestoreapi.com/products/" + id, FakeStoreProductDTO.class);
         assert dto != null;
-        return convertTOProductDTO(dto);
+        return convertTOProductDTO(dto);*/
     }
 
 
