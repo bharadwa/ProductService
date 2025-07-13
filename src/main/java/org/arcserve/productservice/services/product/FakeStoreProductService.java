@@ -1,4 +1,4 @@
-package org.arcserve.productservice.services;
+package org.arcserve.productservice.services.product;
 
 import org.arcserve.productservice.dtos.FakeStoreProductDTO;
 import org.arcserve.productservice.exceptions.ProductNotFoundException;
@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
 

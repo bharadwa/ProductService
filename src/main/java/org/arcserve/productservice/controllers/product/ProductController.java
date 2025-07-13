@@ -1,13 +1,11 @@
-package org.arcserve.productservice.controllers;
+package org.arcserve.productservice.controllers.product;
 
 import org.arcserve.productservice.models.Product;
-import org.arcserve.productservice.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.arcserve.productservice.services.product.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/products")
