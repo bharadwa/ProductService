@@ -1,4 +1,4 @@
-package org.arcserve.productservice.services;
+package org.arcserve.productservice.services.product;
 import org.arcserve.productservice.models.Product;
 import java.util.List;
 
