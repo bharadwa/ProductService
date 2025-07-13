@@ -15,7 +15,7 @@ public class Product extends BaseEntity{
     private String description;
     private String title;
     private Double price;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
     private String image;
 

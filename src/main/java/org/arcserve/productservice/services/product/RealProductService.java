@@ -1,21 +1,27 @@
 package org.arcserve.productservice.services.product;
 
 import org.arcserve.productservice.exceptions.ProductNotFoundException;
+import org.arcserve.productservice.models.Category;
 import org.arcserve.productservice.models.Product;
+import org.arcserve.productservice.repositories.category.CategoryRepository;
 import org.arcserve.productservice.repositories.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 //for new branch we need to set the upstream repository to the real implementation --set-upstream-repository
 @Service("realProductService")
 public class RealProductService implements ProductService {
 
-     private final ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
-     public RealProductService(ProductRepository productRepository) {
-         this.productRepository = productRepository;
-     }
+    public RealProductService(ProductRepository productRepository,
+                              CategoryRepository categoryRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     /**
      * Retrieves a product by its ID.
@@ -25,10 +31,11 @@ public class RealProductService implements ProductService {
      */
     @Override
     public Product getProductById(Long id) {
-        Optional<Product> product= productRepository.findById(id);
-        if(product.isEmpty()) {
-            throw  new ProductNotFoundException("Product with ID " + id + " not found");
-        }else {
+        Optional<Product> product = productRepository.findById(id);
+
+        if (product.isEmpty()) {
+            throw new ProductNotFoundException("Product with ID " + id + " not found");
+        } else {
             return product.get();
         }
 
@@ -41,6 +48,8 @@ public class RealProductService implements ProductService {
      */
     @Override
     public List<Product> getAllProducts() {
+
+        productRepository.findDistinctByPrice(10.0);
         return List.of();
     }
 
@@ -52,6 +61,25 @@ public class RealProductService implements ProductService {
      */
     @Override
     public void createProduct(Product product) {
+
+        if (product.getCategory() == null) {
+            if (product.getCategory().getId() == null) {
+                if (product.getCategory().getValue() == null) {
+                    throw new RuntimeException("category value cannot be null");
+                }
+                Optional<Category> optionalCategory = categoryRepository.findByTitle(product.getCategory().getValue());
+                if (optionalCategory.isEmpty()) {
+                    Category category = categoryRepository.save(product.getCategory());
+                    product.setCategory(category);
+                } else {
+                    product.setCategory(optionalCategory.get());
+                }
+                productRepository.save(product);
+            }
+        } else {
+            throw new RuntimeException("category cannot be null");
+        }
+        productRepository.save(product);
 
     }
 
@@ -74,6 +102,10 @@ public class RealProductService implements ProductService {
      */
     @Override
     public void deleteProduct(Long id) {
-
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+        } else {
+            throw new ProductNotFoundException("Product with ID " + id + " not found", "productid", new String[]{id.toString()});
+        }
     }
 }
