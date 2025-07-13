@@ -18,6 +18,8 @@ public class SampleController {
     @GetMapping("/hello")
     public String sayHello() {
         // This is a sample method
+        // This is a sample method
+
         System.out.println("Hello from SampleController");
         return "Hello from SampleController";
     }
