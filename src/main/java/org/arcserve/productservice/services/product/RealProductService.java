@@ -60,26 +60,33 @@ public class RealProductService implements ProductService {
      * @return the created product
      */
     @Override
-    public void createProduct(Product product) {
+    public Product createProduct(Product product) {
 
-        if (product.getCategory() == null) {
+        if (product.getCategory() != null) {
             if (product.getCategory().getId() == null) {
                 if (product.getCategory().getValue() == null) {
                     throw new RuntimeException("category value cannot be null");
                 }
-                Optional<Category> optionalCategory = categoryRepository.findByTitle(product.getCategory().getValue());
+                Optional<Category> optionalCategory = categoryRepository.findByValue(product.getCategory().getValue());
                 if (optionalCategory.isEmpty()) {
                     Category category = categoryRepository.save(product.getCategory());
                     product.setCategory(category);
                 } else {
                     product.setCategory(optionalCategory.get());
                 }
-                productRepository.save(product);
+            }else {
+                Optional<Category> optionalCategory = categoryRepository.findById(product.getCategory().getId());
+                if (optionalCategory.isEmpty()) {
+                    Category category = categoryRepository.save(product.getCategory());
+                    product.setCategory(category);
+                } else {
+                    throw  new RuntimeException("category already exists");
+                }
             }
+            return  productRepository.save(product);
         } else {
             throw new RuntimeException("category cannot be null");
         }
-        productRepository.save(product);
 
     }
 

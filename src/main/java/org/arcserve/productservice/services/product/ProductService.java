@@ -25,7 +25,7 @@ public interface ProductService {
      * @param product the product to create
      * @return the created product
      */
-    void createProduct(Product  product);
+    Product createProduct(Product  product);
 
     /**
      * Updates an existing product.
