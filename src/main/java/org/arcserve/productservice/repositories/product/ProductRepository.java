@@ -1,7 +1,7 @@
 package org.arcserve.productservice.repositories.product;
 
 import org.arcserve.productservice.models.product.Product;
-import org.arcserve.productservice.models.product.projections.ProductGetTitleAndDescription;
+import org.arcserve.productservice.repositories.projections.ProductWithTitleAndPrice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -34,7 +34,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findTop5ByTitle(String title);
 
 
-    @Query("select p.title,p.description from products p where p.id = :id")
-    ProductGetTitleAndDescription findTitleAndDescriptionById(@Param("id") Long id);
+    @Query("select p.title as title, p.price as price from products p where p.id = :id")
+    ProductWithTitleAndPrice getTitleAndPriceById(@Param("id") Long id);
 
 }

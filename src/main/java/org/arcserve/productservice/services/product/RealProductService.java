@@ -3,9 +3,9 @@ package org.arcserve.productservice.services.product;
 import org.arcserve.productservice.exceptions.ProductNotFoundException;
 import org.arcserve.productservice.models.category.Category;
 import org.arcserve.productservice.models.product.Product;
-import org.arcserve.productservice.models.product.projections.ProductGetTitleAndDescription;
 import org.arcserve.productservice.repositories.category.CategoryRepository;
 import org.arcserve.productservice.repositories.product.ProductRepository;
+import org.arcserve.productservice.repositories.projections.ProductWithTitleAndPrice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -93,10 +93,10 @@ public class RealProductService implements ProductService,IProductServiceExtensi
 
     @Override
     public Product createProductV2(Product product) {
-        ProductGetTitleAndDescription titleAndDescription= productRepository.findTitleAndDescriptionById(1l);
-        if(titleAndDescription!=null) {
-            System.out.println("Title: " + titleAndDescription.getTitle());
-            System.out.println("Description: " + titleAndDescription.getDescription());
+        ProductWithTitleAndPrice withTitleAndPrice= productRepository.getTitleAndPriceById(1l);
+        if(withTitleAndPrice!=null) {
+            System.out.println("Title: " + withTitleAndPrice.getTitle());
+            System.out.println("Price: " + withTitleAndPrice.getPrice());
         }
         return productRepository.save(product);
     }
