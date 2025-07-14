@@ -2,8 +2,8 @@ package org.arcserve.productservice.services.product;
 
 import org.arcserve.productservice.dtos.FakeStoreProductDTO;
 import org.arcserve.productservice.exceptions.ProductNotFoundException;
-import org.arcserve.productservice.models.Category;
-import org.arcserve.productservice.models.Product;
+import org.arcserve.productservice.models.category.Category;
+import org.arcserve.productservice.models.product.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -90,6 +90,7 @@ public class FakeStoreProductService implements ProductService {
     public void deleteProduct(Long id) {
 
     }
+
 
     private Product convertTOProductDTO(FakeStoreProductDTO dto) {
         Product product = new Product();

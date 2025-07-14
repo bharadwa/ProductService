@@ -1,5 +1,5 @@
 package org.arcserve.productservice.services.product;
-import org.arcserve.productservice.models.Product;
+import org.arcserve.productservice.models.product.Product;
 import java.util.List;
 
 public interface ProductService {
@@ -42,4 +42,5 @@ public interface ProductService {
      * @param id the ID of the product to delete
      */
     void deleteProduct(Long id);
+
 }

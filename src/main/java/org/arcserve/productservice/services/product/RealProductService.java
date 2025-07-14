@@ -1,8 +1,9 @@
 package org.arcserve.productservice.services.product;
 
 import org.arcserve.productservice.exceptions.ProductNotFoundException;
-import org.arcserve.productservice.models.Category;
-import org.arcserve.productservice.models.Product;
+import org.arcserve.productservice.models.category.Category;
+import org.arcserve.productservice.models.product.Product;
+import org.arcserve.productservice.models.product.projections.ProductGetTitleAndDescription;
 import org.arcserve.productservice.repositories.category.CategoryRepository;
 import org.arcserve.productservice.repositories.product.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 //for new branch we need to set the upstream repository to the real implementation --set-upstream-repository
 @Service("realProductService")
-public class RealProductService implements ProductService {
+public class RealProductService implements ProductService,IProductServiceExtension {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
@@ -88,6 +89,16 @@ public class RealProductService implements ProductService {
             throw new RuntimeException("category cannot be null");
         }
 
+    }
+
+    @Override
+    public Product createProductV2(Product product) {
+        ProductGetTitleAndDescription titleAndDescription= productRepository.findTitleAndDescriptionById(1l);
+        if(titleAndDescription!=null) {
+            System.out.println("Title: " + titleAndDescription.getTitle());
+            System.out.println("Description: " + titleAndDescription.getDescription());
+        }
+        return productRepository.save(product);
     }
 
     /**

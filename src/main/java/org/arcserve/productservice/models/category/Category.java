@@ -1,8 +1,9 @@
-package org.arcserve.productservice.models;
+package org.arcserve.productservice.models.category;
 
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
+import org.arcserve.productservice.models.BaseEntity;
 
 @Getter
 @Setter
