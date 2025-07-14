@@ -13,4 +13,6 @@ public class Category extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     private String value;
+
+    private String description;
 }
