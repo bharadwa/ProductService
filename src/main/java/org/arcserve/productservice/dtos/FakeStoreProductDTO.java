@@ -2,7 +2,6 @@ package org.arcserve.productservice.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.arcserve.productservice.models.Category;
 
 @Setter
 @Getter
