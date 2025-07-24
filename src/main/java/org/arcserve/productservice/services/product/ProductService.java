@@ -1,5 +1,7 @@
 package org.arcserve.productservice.services.product;
 import org.arcserve.productservice.models.product.Product;
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 public interface ProductService {
@@ -43,4 +45,5 @@ public interface ProductService {
      */
     void deleteProduct(Long id);
 
+    Page<Product> getAllProductsV2(int page, int size);
 }

@@ -2,6 +2,8 @@ package org.arcserve.productservice.repositories.product;
 
 import org.arcserve.productservice.models.product.Product;
 import org.arcserve.productservice.repositories.projections.ProductWithTitleAndPrice;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,4 +39,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select p.title as title, p.price as price from products p where p.id = :id")
     ProductWithTitleAndPrice getTitleAndPriceById(@Param("id") Long id);
 
+    @Override
+    Page<Product> findAll(Pageable pageable);
 }
