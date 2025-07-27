@@ -1,0 +1,6 @@
+https://www.baeldung.com/spring-data-elasticsearch-tutorial
+https://medium.com/@abhishekranjandev/step-by-step-guide-to-using-elasticsearch-in-a-spring-boot-application-477ba7773dea
+
+https://www.baeldung.com/spring-boot-actuators
+
+https://www.baeldung.com/spring-boot-prometheus
