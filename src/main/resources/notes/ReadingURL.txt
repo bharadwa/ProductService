@@ -5,3 +5,9 @@ https://medium.com/@abhishekranjandev/step-by-step-guide-to-using-elasticsearch-
 https://www.baeldung.com/spring-boot-actuators
 https://www.baeldung.com/spring-boot-prometheus
 https://prometheus.io/docs/prometheus/latest/installation/
+
+#dockers links
+https://www.baeldung.com/dockerizing-spring-boot-application
+https://javatechonline.com/deploy-spring-boot-docker-spring-boot/
+https://github.com/deepakkasera/ProductServiceSST/blob/main/productservice_service.yaml
+https://www.baeldung.com/dockerizing-spring-boot-application
