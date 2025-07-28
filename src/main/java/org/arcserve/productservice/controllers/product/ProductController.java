@@ -4,6 +4,7 @@ import org.arcserve.productservice.models.product.Product;
 import org.arcserve.productservice.services.product.IProductServiceExtension;
 import org.arcserve.productservice.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,13 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
+
+    // get all products
+    @GetMapping("/pagination")
+    public Page<Product> getAllProductsByPagination(@RequestParam int page, @RequestParam int size) {
+        return productService.getAllProductsV2(page,size);
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") String productId) {

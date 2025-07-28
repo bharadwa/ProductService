@@ -6,6 +6,8 @@ import org.arcserve.productservice.models.product.Product;
 import org.arcserve.productservice.repositories.category.CategoryRepository;
 import org.arcserve.productservice.repositories.product.ProductRepository;
 import org.arcserve.productservice.repositories.projections.ProductWithTitleAndPrice;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -125,5 +127,10 @@ public class RealProductService implements ProductService,IProductServiceExtensi
         } else {
             throw new ProductNotFoundException("Product with ID " + id + " not found", "productid", new String[]{id.toString()});
         }
+    }
+
+    @Override
+    public Page<Product> getAllProductsV2(int page, int size) {
+        return productRepository.findAll(PageRequest.of(page, size));
     }
 }
