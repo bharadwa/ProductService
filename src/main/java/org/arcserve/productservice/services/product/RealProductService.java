@@ -118,8 +118,8 @@ public class RealProductService implements ProductService,IProductServiceExtensi
      */
     @Override
     public void deleteProduct(Long id) {
-        if (productRepository.existsById(id)) {
-            productRepository.deleteById(id);
+        if (productCacheService.productExists(id)) {
+            productCacheService.deleteProduct(id);
         } else {
             throw new ProductNotFoundException("Product with ID " + id + " not found", "productid", new String[]{id.toString()});
         }

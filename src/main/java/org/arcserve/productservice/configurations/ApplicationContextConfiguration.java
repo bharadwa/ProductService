@@ -12,7 +12,6 @@ public class ApplicationContextConfiguration {
 
     @Bean
     public RestTemplate getRestTemplate () {
-
         return new RestTemplate();
     }
 
