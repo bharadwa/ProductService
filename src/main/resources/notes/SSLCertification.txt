@@ -1,0 +1,14 @@
+use keytool from JDK to generate a keystore and a key pair for Arcserve
+// The keystore will be used to store the private key and the public key.
+// The key pair will be used to encrypt and decrypt the data.
+// The keystore will be used to sign the data.
+
+// The key pair will be used to verify the signature.
+// The keystore will be used to store the certificate.
+#command to generate a keystore and a key pair for Arcserve
+keytool -genkeypair
+-alias Bharadwaj
+-keyalg RSA
+-keysize 4096
+-keystore productServiceKeystore.jks
+-validity 3650
