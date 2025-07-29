@@ -6,6 +6,7 @@ import org.arcserve.productservice.models.product.Product;
 import org.arcserve.productservice.repositories.category.CategoryRepository;
 import org.arcserve.productservice.repositories.product.ProductRepository;
 import org.arcserve.productservice.repositories.projections.ProductWithTitleAndPrice;
+import org.arcserve.productservice.services.cache.ProductCacheService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,13 @@ public class RealProductService implements ProductService,IProductServiceExtensi
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ProductCacheService productCacheService;
 
     public RealProductService(ProductRepository productRepository,
-                              CategoryRepository categoryRepository) {
-        this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
+                              CategoryRepository categoryRepository,ProductCacheService productCacheService) {
+        this.productRepository   = productRepository;
+        this.categoryRepository  = categoryRepository;
+        this.productCacheService = productCacheService;
     }
 
     /**
@@ -34,14 +37,7 @@ public class RealProductService implements ProductService,IProductServiceExtensi
      */
     @Override
     public Product getProductById(Long id) {
-        Optional<Product> product = productRepository.findById(id);
-
-        if (product.isEmpty()) {
-            throw new ProductNotFoundException("Product with ID " + id + " not found");
-        } else {
-            return product.get();
-        }
-
+       return productCacheService.getProduct(id);
     }
 
     /**
@@ -122,8 +118,8 @@ public class RealProductService implements ProductService,IProductServiceExtensi
      */
     @Override
     public void deleteProduct(Long id) {
-        if (productRepository.existsById(id)) {
-            productRepository.deleteById(id);
+        if (productCacheService.productExists(id)) {
+            productCacheService.deleteProduct(id);
         } else {
             throw new ProductNotFoundException("Product with ID " + id + " not found", "productid", new String[]{id.toString()});
         }
