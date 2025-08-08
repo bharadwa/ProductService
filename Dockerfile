@@ -13,7 +13,7 @@ WORKDIR /app
 COPY target/ProductService-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose HTTP and HTTPS ports
-EXPOSE 8080 8443
+EXPOSE : 8443
 
 # Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
