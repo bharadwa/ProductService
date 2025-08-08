@@ -23,5 +23,7 @@ public abstract  class BaseEntity implements Serializable {
     private String createdAt;
     private String updatedAt;
 
+    private Boolean deleted=false;
+
 
 }

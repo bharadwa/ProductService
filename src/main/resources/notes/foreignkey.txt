@@ -1,0 +1,5 @@
+https://www.baeldung.com/hibernate-lazy-eager-loading
+https://www.baeldung.com/jpa-cascade-types
+https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver16
+https://www.baeldung.com/spring-data-jpa-query
+https://www.baeldung.com/hibernate-fetchmode

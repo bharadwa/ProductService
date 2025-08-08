@@ -1,0 +1,18 @@
+Query Methods <br>
+     -- Declared Query Methods <br>
+     -- HQL Query Methods <br>
+     -- Native Query Methods <br>
+
+ Declared Query  Methods <br>
+      - In build queries
+      - Declared query methods are methods defined in a repository interface. <br>
+      - Hibernate uses these methods to generate queries based on their names. <br>
+      - These methods are typically used to perform CRUD operations. <br>
+ Rules  <br>
+      - The method name is used to generate the query. <br>
+      - The method name must follow a specific naming convention. <br>
+      - The method name is parsed to create the query. <br>
+      - The method name can include keywords like "find", "read", "query", "count", etc. <br>
+      - The method name can include property names and operators. <br>
+      - The method name can include logical operators like "And", "Or", etc. <br>
+      - The method name can include sorting and pagination keywords like "OrderBy", "Pageable", etc. <br>
