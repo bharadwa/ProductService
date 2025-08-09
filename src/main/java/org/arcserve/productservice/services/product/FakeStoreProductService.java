@@ -4,6 +4,7 @@ import org.arcserve.productservice.dtos.FakeStoreProductDTO;
 import org.arcserve.productservice.exceptions.ProductNotFoundException;
 import org.arcserve.productservice.models.category.Category;
 import org.arcserve.productservice.models.product.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
